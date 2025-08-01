@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agência Pet Digital</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS for animations */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Keyframes for animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bgParallax {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 100% 100%;
+            }
+        }
+
+        /* Apply animations */
+        .animate-fade-in-down {
+            animation: fadeInDown 0.8s ease-out forwards;
+        }
+
+        .animate-fade-in-right {
+            animation: fadeInRight 0.8s ease-out forwards;
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .animate-bg-parallax {
+            background-size: 200% 200%;
+            animation: bgParallax 20s infinite alternate;
+        }
+
+        /* Initial state for elements that will animate on scroll */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-on-scroll.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Specific delays for staggered animations */
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+
+        /* Accordion icon styling */
+        .accordion-header .plus-icon {
+            transition: transform 0.3s ease;
+        }
+        .accordion-content:not(.hidden) + .accordion-header .plus-icon {
+            transform: rotate(45deg); /* Change to X or similar when open */
+        }
+    </style>
+</head>
+<body class="bg-indigo-50 text-gray-800">
+
+    <!-- Header Section -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white shadow-lg py-4 transition-all duration-300 ease-in-out rounded-b-xl">
+        <nav class="container mx-auto flex justify-between items-center px-4">
+            <div class="text-2xl font-extrabold text-blue-600">Agência Pet Digital</div>
+            <div class="hidden md:flex space-x-8 text-gray-600 font-semibold">
+                <a href="#servicos" class="hover:text-blue-600 transition duration-300 p-2 rounded-md hover:bg-blue-50">Serviços</a>
+                <a href="#diferenciais" class="hover:text-blue-600 transition duration-300 p-2 rounded-md hover:bg-blue-50">Diferenciais</a>
+            </div>
+            <a href="https://wa.me/5511983487363" target="_blank" rel="noopener noreferrer" class="hidden md:block bg-blue-600 text-white font-bold py-2 px-6 rounded-full hover:bg-blue-700 transition duration-300 shadow-md">
+                Agendar Diagnóstico Gratuito Agora
+            </a>
+            <!-- Mobile Menu Button (Hamburger) -->
+            <button id="mobile-menu-button" class="md:hidden text-gray-600 focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-4 text-center shadow-lg rounded-b-xl">
+            <a href="#servicos" class="block py-2 text-gray-700 hover:text-blue-600 transition duration-300">Serviços</a>
+            <a href="#diferenciais" class="block py-2 text-gray-700 hover:text-blue-600 transition duration-300">Diferenciais</a>
+            <a href="https://wa.me/5511983487363" target="_blank" rel="noopener noreferrer" class="block mt-4 bg-blue-600 text-white font-bold py-2 px-6 rounded-full hover:bg-blue-700 transition duration-300">
+                Agendar Diagnóstico Gratuito Agora
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-24 pb-12 md:pt-40 md:pb-24 overflow-hidden bg-white">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
+            <div class="md:w-1/2 text-center md:text-left animate-fade-in-down relative z-20"> <!-- Added relative z-20 -->
+                <div class="inline-flex items-center bg-blue-100 text-blue-600 text-sm font-semibold py-2 px-6 rounded-full mb-4 shadow-sm">
+                    <img src="https://placehold.co/48x48/60A5FA/FFFFFF?text=🐾" alt="Achievement Badge" class="w-12 h-12 inline-block mr-3 rounded-full border-2 border-blue-300">
+                    Seu Negócio Pet no Piloto Automático Rumo ao Sucesso!
+                </div>
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-gray-900 mb-4">
+                    Aumente Seu Faturamento e Conquiste Mais Clientes Sem Abrir Mão do Seu Tempo.
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 mb-8">
+                    Sua clínica veterinária ou pet shop tem um potencial enorme. Nós usamos AUTOMAÇÃO, INTELIGÊNCIA ARTIFICIAL e ANÚNCIOS ESTRATÉGICOS para liberar seu tempo e fazer seu negócio crescer de forma inteligente e previsível.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="https://wa.me/5511983487363" target="_blank" rel="noopener noreferrer" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition duration-300 transform hover:scale-105 shadow-lg"> <!-- Removed z-10 here -->
+                        Agende Seu Diagnóstico Gratuito Agora!
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 mt-10 md:mt-0 flex justify-center animate-fade-in-right">
+                <img src="site.jpg" alt="Veterinária com cão e gato" class="w-full max-w-lg rounded-xl shadow-2xl"> <!-- Removed transform classes -->
+            </div>
+        </div>
+        <!-- Removed animate-pulse-custom class -->
+        <div class="absolute inset-0 z-0 bg-gradient-to-br from-blue-50 via-white to-blue-100 opacity-50"></div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos" class="py-20 bg-indigo-100 animate-on-scroll rounded-t-xl">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-12">Nossos Serviços</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="col-span-full p-8 bg-blue-600 text-white rounded-xl shadow-xl transform hover:scale-105 transition duration-300">
+                    <h3 class="text-2xl font-bold mb-4">Desenhamos 4 serviços que se encaixam na sua necessidade e no seu momento.</h3>
+                    <p class="text-lg">Todos os nossos pacotes incluem nossa expertise em IA, Copy e Automação.</p>
+                </div>
+                <div class="p-6 bg-white rounded-xl shadow-lg transform hover:scale-105 transition duration-300 animate-on-scroll delay-100">
+                    <img src="https://placehold.co/400x250/93C5FD/1E40AF?text=PET+IA+EXPERT" alt="PET IA EXPERT" class="rounded-xl mb-4 shadow-md">
+                    <h4 class="text-xl font-bold text-gray-900 mb-2">Chega de Perder Tempo no Marketing. Deixe a IA Trabalhar por Você</h4>
+                    <p class="text-gray-600">Se sua rotina é corrida e não sobra tempo, este é o combo ideal. Enquanto seus concorrentes perdem horas no marketing digital, você terá um time de Agentes Autônomos de IA gerenciando suas redes sociais e processos de atendimento 24/7.</p>
+                </div>
+                <div class="p-6 bg-white rounded-xl shadow-lg transform hover:scale-105 transition duration-300 animate-on-scroll delay-200">
+                    <img src="https://placehold.co/400x250/93C5FD/1E40AF?text=PET+CAMPANHA+TOTAL" alt="PET+CAMPANHA+TOTAL" class="rounded-xl mb-4 shadow-md">
+                    <h4 class="text-xl font-bold text-gray-900 mb-2">Transforme "Visualizado" em Clientes. Anúncios Inteligentes e Campanhas que Fazem o Dinheiro Entrar</h4>
+                    <p class="text-gray-600">O problema não é a falta de anúncios, mas a falta de uma estratégia que converte. Nós gerenciamos seu tráfego pago para atrair novos clientes ativamente e construímos Funis de Vendas Especializados com Copy que realmente vendem.</p>
+                </div>
+                <div class="p-6 bg-white rounded-xl shadow-lg transform hover:scale-105 transition duration-300 animate-on-scroll delay-300">
+                    <img src="https://placehold.co/400x250/93C5FD/1E40AF?text=PET+MIDIA+DIGITAL" alt="PET+MIDIA+DIGITAL" class="rounded-xl mb-4 shadow-md">
+                    <h4 class="text-xl font-bold text-gray-900 mb-2">Tenha um Conteúdo que Engaja e Constrói Autoridade. Deixe de Publicar no Escuro</h4>
+                    <p class="text-gray-600">Postar sem um plano é como caminhar no escuro. Este combo garante que cada publicação construa sua autoridade e engaje seu público. Com nossa Linha Editorial estratégica, Calendário Editorial e Edição Profissional de Vídeos, suas redes sociais se tornarão um ímã de novos clientes.</p>
+                </div>
+                <div class="p-6 bg-white rounded-xl shadow-lg transform hover:scale-105 transition duration-300 animate-on-scroll delay-400">
+                    <img src="https://placehold.co/400x250/93C5FD/1E40AF?text=PET+LANÇAMENTO+PRO" alt="PET+LANÇAMENTO+PRO" class="rounded-xl mb-4 shadow-md">
+                    <h4 class="text-xl font-bold text-gray-900 mb-2">Seu Conhecimento Vale Ouro. Transforme-o em um Negócio de Sucesso</h4>
+                    <p class="text-gray-600">Você tem conhecimento, experiência e paixão que podem ser compartilhados em escala. O Pet Lançamento Pro é o serviço para quem busca a próxima etapa. Nossa expertise em Gestão de Lançamentos cuida de toda a estratégia para você criar um novo negócio ou evento de sucesso.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Services Call to Action -->
+    <section class="py-12 bg-blue-50 text-center animate-on-scroll rounded-xl shadow-inner mx-4 my-8">
+        <div class="container mx-auto px-4">
+            <p class="text-lg md:text-xl text-blue-800 font-semibold mb-6">
+                Caso nenhum dos serviços acima atenda perfeitamente às suas necessidades, clique no botão abaixo para agendar um diagnóstico e conhecer nossas soluções sob medida!
+            </p>
+            <a href="https://wa.me/5511983487363" target="_blank" rel="noopener noreferrer" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition duration-300 transform hover:scale-105 shadow-lg z-10">
+                Agendar Diagnóstico
+            </a>
+        </div>
+    </section>
+
+    <!-- Diferenciais Section -->
+    <section id="diferenciais" class="py-20 bg-indigo-100 animate-on-scroll rounded-t-xl">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-12">O Segredo do Nosso Sucesso no Nicho Pet</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="p-6 bg-white rounded-xl shadow-lg transform hover:scale-105 transition duration-300 animate-on-scroll delay-100">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Foco Exclusivo no Mercado Pet</h3>
+                    <p class="text-gray-600">Conhecemos as particularidades, dores e oportunidades do seu negócio. Não somos mais uma agência generalista.</p>
+                </div>
+                <div class="p-6 bg-white rounded-xl shadow-lg transform hover:scale-105 transition duration-300 animate-on-scroll delay-200">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Tecnologia de Ponta (IA)</h3>
+                    <p class="text-gray-600">Implementamos as ferramentas mais inovadoras para automatizar, otimizar e escalar seus resultados.</p>
+                </div>
+                <div class="p-6 bg-white rounded-xl shadow-lg transform hover:scale-105 transition duration-300 animate-on-scroll delay-300">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Atendimento Personalizado</h3>
+                    <p class="text-gray-600">Você não é apenas mais um número. Oferecemos um acompanhamento próximo e dedicado.</p>
+                </div>
+                <div class="p-6 bg-white rounded-xl shadow-lg transform hover:scale-105 transition duration-300 animate-on-scroll delay-400">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Compromisso com Resultados</h3>
+                    <p class="text-gray-600">Nossa meta é o seu faturamento. Trabalhamos com estratégias comprovadas para gerar ROI.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-indigo-100 animate-on-scroll rounded-t-xl">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">Perguntas Frequentes</h2>
+            <div class="max-w-3xl mx-auto">
+                <div class="accordion-item bg-white rounded-xl shadow-lg mb-4 overflow-hidden">
+                    <h3 class="accordion-header p-6 cursor-pointer flex justify-between items-center font-bold text-gray-900 hover:bg-gray-50 transition duration-300">
+                        Como a IA pode ajudar meu negócio pet?
+                        <span class="plus-icon text-2xl font-semibold">+</span>
+                    </h3>
+                    <div class="accordion-content p-6 hidden text-gray-600 border-t border-gray-200">
+                        A IA pode automatizar o marketing digital, gerenciar o atendimento ao cliente 24/7, otimizar campanhas de anúncios e personalizar a comunicação, liberando seu tempo e aumentando a eficiência do seu negócio.
+                    </div>
+                </div>
+                <div class="accordion-item bg-white rounded-xl shadow-lg mb-4 overflow-hidden">
+                    <h3 class="accordion-header p-6 cursor-pointer flex justify-between items-center font-bold text-gray-900 hover:bg-gray-50 transition duration-300">
+                        Qual a diferença entre a Agência Pet Digital e outras agências?
+                        <span class="plus-icon text-2xl font-semibold">+</span>
+                    </h3>
+                    <div class="accordion-content p-6 hidden text-gray-600 border-t border-gray-200">
+                        Nosso diferencial é o foco exclusivo no mercado pet, o uso de tecnologia de ponta como a IA e a automação, e um compromisso real com seus resultados de faturamento, além de um atendimento totalmente personalizado.
+                    </div>
+                </div>
+                <div class="accordion-item bg-white rounded-xl shadow-lg mb-4 overflow-hidden">
+                    <h3 class="accordion-header p-6 cursor-pointer flex justify-between items-center font-bold text-gray-900 hover:bg-gray-50 transition duration-300">
+                        Os serviços são adequados para pequenas clínicas?
+                        <span class="plus-icon text-2xl font-semibold">+</span>
+                    </h3>
+                    <div class="accordion-content p-6 hidden text-gray-600 border-t border-gray-200">
+                        Sim, temos pacotes desenhados para se encaixar em diferentes tamanhos e momentos do negócio, desde pequenas clínicas até grandes pet shops. O diagnóstico gratuito serve justamente para identificarmos a melhor solução para você.
+                    </div>
+                </div>
+                <div class="accordion-item bg-white rounded-xl shadow-lg mb-4 overflow-hidden">
+                    <h3 class="accordion-header p-6 cursor-pointer flex justify-between items-center font-bold text-gray-900 hover:bg-gray-50 transition duration-300">
+                        Como funciona o processo de agendamento do diagnóstico?
+                        <span class="plus-icon text-2xl font-semibold">+</span>
+                    </h3>
+                    <div class="accordion-content p-6 hidden text-gray-600 border-t border-gray-200">
+                        É simples! Você clica no botão "Agende Seu Diagnóstico Gratuito Agora", preenche um rápido formulário e nosso time entra em contato para marcar uma conversa, sem compromisso, para entender suas necessidades e apresentar o plano ideal.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section id="diagnostico" class="py-20 bg-blue-600 text-white relative overflow-hidden animate-on-scroll rounded-t-xl">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
+            <div class="md:w-1/2 text-center md:text-left mb-8 md:mb-0">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Pronto para Transformar seu Negócio?</h2>
+                <p class="text-lg mb-6">Não perca mais tempo com estratégias que não trazem resultados. Fale com nossos especialistas e descubra qual serviço é o ideal para você!</p>
+                <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="https://wa.me/5511983487363" target="_blank" rel="noopener noreferrer" class="bg-white text-blue-600 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition duration-300 transform hover:scale-105 shadow-lg z-10">
+                        Agende Seu Diagnóstico Gratuito
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <img src="https://placehold.co/300x550/60A5FA/FFFFFF?text=App+Pet+Mockup" alt="Mockup de Aplicativo Pet" class="w-2/3 md:w-1/2 lg:w-2/3 max-w-sm rounded-lg shadow-2xl"> <!-- Removed transform classes -->
+            </div>
+        </div>
+        <div class="absolute inset-0 z-0 bg-blue-500 opacity-20 animate-bg-parallax"></div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="py-8 bg-gray-800 text-white text-center rounded-t-xl">
+        <div class="container mx-auto px-4">
+            <p class="mb-2">Agência Pet Digital © 2025</p>
+            <a href="https://www.instagram.com/kelirosa.copy" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 transition duration-300">
+                Instagram: @kelirosa.copy
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth scroll for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerOffset = document.querySelector('header').offsetHeight; // Get header height
+                        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                        const offsetPosition = elementPosition - headerOffset - 20; // Adjust for header and add some padding
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+
+            // FAQ accordion functionality
+            document.querySelectorAll('.accordion-header').forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const plusIcon = header.querySelector('.plus-icon');
+
+                    // Close all other open accordions
+                    document.querySelectorAll('.accordion-content').forEach(otherContent => {
+                        if (otherContent !== content && !otherContent.classList.contains('hidden')) {
+                            otherContent.classList.add('hidden');
+                            otherContent.previousElementSibling.querySelector('.plus-icon').textContent = '+';
+                        }
+                    });
+
+                    // Toggle current accordion
+                    content.classList.toggle('hidden');
+                    if (content.classList.contains('hidden')) {
+                        plusIcon.textContent = '+';
+                    } else {
+                        plusIcon.textContent = '-';
+                    }
+                });
+            });
+
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Intersection Observer for fade-in on scroll effect
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
+
+            document.querySelectorAll('.animate-on-scroll').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
