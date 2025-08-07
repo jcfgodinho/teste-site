@@ -106,7 +106,7 @@
     <!-- Header Section -->
     <header class="fixed top-0 left-0 right-0 z-50 bg-white shadow-lg py-4 transition-all duration-300 ease-in-out rounded-b-xl">
         <nav class="container mx-auto flex justify-between items-center px-4">
-            <div class="text-2xl font-extrabold text-blue-600">Keli Rosa Estrategista</div>
+            <div class="text-2xl font-extrabold text-blue-600">Agência VetPetDigital</div>
             <div class="hidden md:flex space-x-8 text-gray-600 font-semibold">
                 <a href="#servicos" class="hover:text-blue-600 transition duration-300 p-2 rounded-md hover:bg-blue-50">Serviços</a>
                 <a href="#diferenciais" class="hover:text-blue-600 transition duration-300 p-2 rounded-md hover:bg-blue-50">Diferenciais</a>
@@ -324,4 +324,80 @@
                 Instagram: @kelirosa.copy
             </a>
         </div>
-    </footer
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth scroll for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerOffset = document.querySelector('header').offsetHeight; // Get header height
+                        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                        const offsetPosition = elementPosition - headerOffset - 20; // Adjust for header and add some padding
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+
+            // FAQ accordion functionality
+            document.querySelectorAll('.accordion-header').forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const plusIcon = header.querySelector('.plus-icon');
+
+                    // Close all other open accordions
+                    document.querySelectorAll('.accordion-content').forEach(otherContent => {
+                        if (otherContent !== content && !otherContent.classList.contains('hidden')) {
+                            otherContent.classList.add('hidden');
+                            otherContent.previousElementSibling.querySelector('.plus-icon').textContent = '+';
+                        }
+                    });
+
+                    // Toggle current accordion
+                    content.classList.toggle('hidden');
+                    if (content.classList.contains('hidden')) {
+                        plusIcon.textContent = '+';
+                    } else {
+                        plusIcon.textContent = '-';
+                    }
+                });
+            });
+
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Intersection Observer for fade-in on scroll effect
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
+
+            document.querySelectorAll('.animate-on-scroll').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
